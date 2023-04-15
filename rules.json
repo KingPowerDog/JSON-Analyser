@@ -1,0 +1,12 @@
+{"rules":[
+{
+    "name":"isPon","attribute":"Pon","operator":"equals","value":"TRUE"
+},
+{
+    "name":"GenNum","attribute":"Gen","operator":"return","value":"value"
+},
+{
+    "name":"hasTwitch","attribute":"Channels","operator":"contains","value":"Twitch"
+}
+]
+}
