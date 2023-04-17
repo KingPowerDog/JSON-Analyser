@@ -64,7 +64,6 @@ tgtfile.write(headingLine + "\n")
 for entry in source_data[csv_dataattrib]:
 
     current_entry = source_data[csv_dataattrib][entry]
-    print (current_entry)
 
     current_csv_line = entry
 
@@ -74,19 +73,35 @@ for entry in source_data[csv_dataattrib]:
         attrib = rule["attribute"]
 
         if rule["operator"] == "equals" :
-            if current_entry[attrib] == rule["value"]:
-                current_csv_line += csv_separator + csv_marker 
+            if attrib in current_entry:
+                if current_entry[attrib] == rule["value"]:
+                    current_csv_line += csv_separator + csv_marker 
+                else:
+                    current_csv_line += csv_separator + ""
             else:
-                current_csv_line += csv_separator + "" 
+                current_csv_line +=  csv_separator + "" 
         if rule["operator"] == "return":
-            current_csv_line +=  csv_separator + str(current_entry[attrib])
-        if rule["operator"] == "contains":
-            if rule["value"] in current_entry[attrib]:
-                current_csv_line += csv_separator + csv_marker
+            if attrib in current_entry:
+                current_csv_line +=  csv_separator + str(current_entry[attrib])
             else:
-                current_csv_line +=  csv_separator +""
+                current_csv_line +=  csv_separator + ""
+        if rule["operator"] == "contains":
+            if attrib in current_entry:
+                if rule["value"] in current_entry[attrib]:
+                    current_csv_line += csv_separator + csv_marker
+                else:
+                    current_csv_line +=  csv_separator + ""
+            else:
+                current_csv_line +=  csv_separator + ""
+        if rule["operator"] == "notContains":
+            if attrib in current_entry:
+                if rule["value"] not in current_entry[attrib]:
+                    current_csv_line += csv_separator + csv_marker
+                else:
+                    current_csv_line +=  csv_separator + ""
+            else:
+                current_csv_line +=  csv_separator + ""
 
-    print(current_csv_line)
     tgtfile.write(current_csv_line + "\n")
 
 tgtfile.close()
