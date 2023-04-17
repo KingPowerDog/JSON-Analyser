@@ -29,7 +29,7 @@ The expected attributes of a rule are explained below:
 - **"equals"**: Checks if the "attribute" is equal to the "value" in the rule. If it is equal, mark in the report.
 - **"return"**: Returns the value of "attribute" from the source JSON as is. The contents of "value" is not checked for this rule.
 - **"contains"**: Checks if the "attribute" contains the string indicated in "value". If it is found, mark in the report.
-
+- **"notContains"**: The opposite of the "contains" operator. If the value is not found, mark in the report.
 
 ### test.json
 
