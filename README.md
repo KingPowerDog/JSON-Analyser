@@ -30,6 +30,8 @@ The expected attributes of a rule are explained below:
 - **"return"**: Returns the value of "attribute" from the source JSON as is. The contents of "value" is not checked for this rule.
 - **"contains"**: Checks if the "attribute" contains the string indicated in "value". If it is found, mark in the report.
 - **"notContains"**: The opposite of the "contains" operator. If the value is not found, mark in the report.
+- **"notContainsOrNotExists"**: Checks if the value is either not found, or the attribute itself does not exist at all
+- **"containsOrNotExists"**: Checks if "value" is in "attribute", or "attribute" does not exist. Useful if the "attribute" is implicitly active if not indicated.
 
 ### test.json
 
@@ -37,3 +39,4 @@ A sample file called _test.json_ is included for reference as a basis for the ty
 
 ## TODO
 - Add more operator support (I may add only based on what I need)
+- Add some error handling

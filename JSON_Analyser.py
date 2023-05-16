@@ -101,6 +101,22 @@ for entry in source_data[csv_dataattrib]:
                     current_csv_line +=  csv_separator + ""
             else:
                 current_csv_line +=  csv_separator + ""
+        if rule["operator"] == "notContainsOrNotExists":
+            if attrib in current_entry:
+                if rule["value"] not in current_entry[attrib]:
+                    current_csv_line += csv_separator + csv_marker
+                else:
+                    current_csv_line +=  csv_separator + ""
+            else:
+                current_csv_line +=  csv_separator + csv_marker
+        if rule["operator"] == "containsOrNotExists":
+            if attrib in current_entry:
+                if rule["value"] in current_entry[attrib]:
+                    current_csv_line += csv_separator + csv_marker
+                else:
+                    current_csv_line +=  csv_separator + ""
+            else:
+                current_csv_line +=  csv_separator + csv_marker
 
     tgtfile.write(current_csv_line + "\n")
 
